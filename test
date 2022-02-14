@@ -1,0 +1,13 @@
+{
+  Object.entries(getState).map(
+    ([itemId, { FirstName, LastName, Age, Number, Birthday }]) => (
+      <tr key={itemId}>
+        <td>{FirstName}</td>
+        <td>{LastName}</td>
+        <td>{Age}</td>
+        <td>{Number}</td>
+        <td>{Birthday}</td>
+      </tr>
+    )
+  )
+}
