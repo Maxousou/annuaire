@@ -12,6 +12,17 @@ const Liste = () => {
         </tr>
       </thead>
       <tbody>
+        {Object.entries(getState).map(
+          ([itemId, { firstName, lastName, age, phoneNumber }]) => (
+            <tr key={itemId}>
+              <td>{firstName}</td>
+              <td>{lastName}</td>
+              <td>{age}</td>
+              <td>{phoneNumber}</td>
+            </tr>
+          )
+        )}
+
         <tr>
           <td></td>
           <td></td>

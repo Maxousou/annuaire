@@ -1,20 +1,28 @@
-import { createContext, useState } from "react"
-const initialstate = [
+import { createContext, useState, useCallback } from "react"
+const initialState = [
   {
-    FirstName: "Matheus",
-    LastName: "Nunes Borba",
-    Age: 10,
-    Number: "0632785042",
-    Birthday: "04/11/2011",
+    firstName: "",
+    lastName: "",
+    age: 10,
+    phoneNumber: "",
   },
 ]
-const AppContext = createContext({})
+const AppContext = createContext(initialState)
 
-export const ContextProvider = (props) => {
-  const [getState, setState] = useState(initialstate)
-  console.log(getState)
+export const AppContextProvider = (props) => {
+  const [getState, setState] = useState(initialState)
+  const addPerson = useCallback((firstName, lastName, age, phoneNumber) => {
+    setState((currentState) => {
+      return currentState.concat({
+        firstName: firstName,
+        lastName: lastName,
+        age: age,
+        phoneNumber: phoneNumber,
+      })
+    })
+  }, [])
 
-  return <AppContext.Provider {...props} value={{ entries: getState }} />
+  return <AppContext.Provider {...props} value={{ getState, addPerson }} />
 }
 
 export default AppContext
